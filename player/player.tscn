@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://b01nsjmmrjijr"]
+
+[ext_resource type="Script" uid="uid://cdcjde3jouur8" path="res://player/player.gd" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://bxo48am8yhnno" path="res://player/player_component_horizontal_movement.gd" id="2_g1dw6"]
+[ext_resource type="Script" uid="uid://bknyxylsjojuo" path="res://player/player_component_thrusting.gd" id="3_yw30f"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_kqu6x"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_oul6g"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_oul6g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_kqu6x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_oul6g")
+
+[node name="PCHorizontalMovement" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("2_g1dw6")
+player = NodePath("..")
+metadata/_custom_type_script = "uid://bxo48am8yhnno"
+
+[node name="PCThrusting" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("3_yw30f")
+player = NodePath("..")
+metadata/_custom_type_script = "uid://bknyxylsjojuo"
