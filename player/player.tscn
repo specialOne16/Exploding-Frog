@@ -9,6 +9,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_oul6g"]
 
 [node name="Player" type="CharacterBody3D"]
+collision_mask = 16
 script = ExtResource("1_oul6g")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

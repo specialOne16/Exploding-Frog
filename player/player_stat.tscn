@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://q8cktic6p6vb"]
+
+[ext_resource type="Script" uid="uid://bio0gn0bfhp0d" path="res://player/player_stat.gd" id="1_3hopx"]
+
+[node name="PlayerStat" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3hopx")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 27.0
+grow_horizontal = 2
