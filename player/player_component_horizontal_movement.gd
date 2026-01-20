@@ -1,7 +1,8 @@
 extends Node
 class_name PCGroundMovement
 
-@export var player: Player
+@onready var player: Player = $".."
+
 @export var ground_movement_speed = 5
 @export var sky_movement_speed = 3
 
