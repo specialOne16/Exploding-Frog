@@ -8,5 +8,5 @@ class_name PlayerStat
 func _ready() -> void:
 	progress_bar.max_value = player.max_fuel
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	progress_bar.value = player.current_fuel
