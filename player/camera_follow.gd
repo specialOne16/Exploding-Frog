@@ -5,10 +5,7 @@ class_name CameraFollow
 @export var x_tolerance: float = 4
 @export var y_tolerance: float = 1
 
-var _initial_distance: Vector3
-
-func _ready() -> void:
-	_initial_distance = position - following.position
+var _initial_distance: Vector3 = Vector3(0, 3, 9)
 
 func _process(_delta: float) -> void:
 	var target_position = following.position + _initial_distance
