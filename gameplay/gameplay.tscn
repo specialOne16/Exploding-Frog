@@ -35,6 +35,7 @@ transform = Transform3D(1, 0, 0, 0, 0.97627336, 0.21654186, 0, -0.21654186, 0.97
 following = NodePath("../Player")
 
 [node name="Level" parent="." instance=ExtResource("3_oe8ih")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
