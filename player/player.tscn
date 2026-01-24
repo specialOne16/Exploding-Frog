@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://b01nsjmmrjijr"]
 
 [ext_resource type="Script" uid="uid://cdcjde3jouur8" path="res://player/player.gd" id="1_oul6g"]
-[ext_resource type="Script" uid="uid://bxo48am8yhnno" path="res://player/player_component_horizontal_movement.gd" id="2_g1dw6"]
-[ext_resource type="Script" uid="uid://bknyxylsjojuo" path="res://player/player_component_thrusting.gd" id="3_yw30f"]
+[ext_resource type="Script" uid="uid://bxo48am8yhnno" path="res://player/components/player_component_horizontal_movement.gd" id="2_g1dw6"]
+[ext_resource type="Script" uid="uid://bknyxylsjojuo" path="res://player/components/player_component_thrusting.gd" id="3_yw30f"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_kqu6x"]
 

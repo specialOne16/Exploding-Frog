@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://q8cktic6p6vb"]
 
-[ext_resource type="Script" uid="uid://bio0gn0bfhp0d" path="res://player/player_stat.gd" id="1_3hopx"]
+[ext_resource type="Script" uid="uid://bio0gn0bfhp0d" path="res://stats/player_stat.gd" id="1_3hopx"]
 
 [node name="PlayerStat" type="Control"]
 layout_mode = 3

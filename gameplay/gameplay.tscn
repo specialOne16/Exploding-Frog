@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://bpxoa0odfnb52"]
 
 [ext_resource type="PackedScene" uid="uid://b01nsjmmrjijr" path="res://player/player.tscn" id="1_n4psk"]
-[ext_resource type="PackedScene" uid="uid://bcb178bbl6qlo" path="res://player/camera_follow.tscn" id="2_ej4tk"]
+[ext_resource type="PackedScene" uid="uid://bcb178bbl6qlo" path="res://camera/camera_follow.tscn" id="2_ej4tk"]
 [ext_resource type="PackedScene" uid="uid://2mnh43yrjpta" path="res://level/level.tscn" id="3_oe8ih"]
-[ext_resource type="PackedScene" uid="uid://q8cktic6p6vb" path="res://player/player_stat.tscn" id="4_xuee5"]
+[ext_resource type="PackedScene" uid="uid://q8cktic6p6vb" path="res://stats/player_stat.tscn" id="4_xuee5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n4psk"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -27,7 +27,7 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_n4psk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.306139, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66.677864, -7.1015425, 0)
 axis_lock_linear_z = true
 
 [node name="CameraFollow" parent="." node_paths=PackedStringArray("following") instance=ExtResource("2_ej4tk")]
@@ -35,7 +35,6 @@ transform = Transform3D(1, 0, 0, 0, 0.97627336, 0.21654186, 0, -0.21654186, 0.97
 following = NodePath("../Player")
 
 [node name="Level" parent="." instance=ExtResource("3_oe8ih")]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
