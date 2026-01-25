@@ -1,8 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://bcb178bbl6qlo"]
+[gd_scene load_steps=17 format=3 uid="uid://bcb178bbl6qlo"]
 
 [ext_resource type="Script" uid="uid://s3u81eu2oka5" path="res://camera/camera_follow.gd" id="1_5phf5"]
 [ext_resource type="Shader" uid="uid://dydwwyhmylusy" path="res://shaders/fog_shader.gdshader" id="2_jg67d"]
-[ext_resource type="Shader" uid="uid://c01r0y6kuvjkk" path="res://shaders/pixel_shader.gdshader" id="2_x0gr8"]
+[ext_resource type="Shader" uid="uid://bt7vx24u8i1bd" path="res://camera/pixel_test.gdshader" id="3_x61n0"]
 [ext_resource type="Shader" uid="uid://c2gvois6expgd" path="res://shaders/pixel_and_fog_shader.gdshader" id="4_x61n0"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_x61n0"]
@@ -24,37 +24,39 @@ shader_parameter/fog_near = 1.0
 shader_parameter/fog_far = 150.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_jg67d"]
-flip_faces = true
 size = Vector2(2, 2)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x61n0"]
-render_priority = 0
-shader = ExtResource("2_x0gr8")
-shader_parameter/TwixelAngle = 0.0
-shader_parameter/PixelSize = 1.0
-shader_parameter/FogColor = Color(0, 0, 0, 1)
-shader_parameter/FogStart = 0.0
-shader_parameter/FogEnd = 1.0
-shader_parameter/Quantize = false
+render_priority = -1
+shader = ExtResource("3_x61n0")
+shader_parameter/pixel_size = 2.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_v1uf1"]
+flip_faces = true
+size = Vector2(2, 2)
 
 [sub_resource type="Gradient" id="Gradient_x61n0"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_v1uf1"]
 gradient = SubResource("Gradient_x61n0")
 
+[sub_resource type="Gradient" id="Gradient_qrjs6"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xiq0e"]
+gradient = SubResource("Gradient_qrjs6")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xiq0e"]
-render_priority = 0
+render_priority = -1
 shader = ExtResource("4_x61n0")
 shader_parameter/TwixelAngle = 0.0
 shader_parameter/PixelSize = 2.0000000475
 shader_parameter/Quantize = false
+shader_parameter/PaletteTexture = SubResource("GradientTexture2D_xiq0e")
 shader_parameter/FogGradient = SubResource("GradientTexture2D_v1uf1")
 shader_parameter/fog_strength = 0.50000002375
 shader_parameter/fog_amount = 0.15
 shader_parameter/fog_near = 1.0
-shader_parameter/fog_far = 150.0
+shader_parameter/fog_far = 300.0
 
 [node name="CameraFollow" type="Camera3D"]
 script = ExtResource("1_5phf5")
@@ -72,7 +74,14 @@ visible = false
 mesh = SubResource("QuadMesh_jg67d")
 surface_material_override/0 = SubResource("ShaderMaterial_x61n0")
 
+[node name="PixelShader2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1)
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_jg67d")
+surface_material_override/0 = SubResource("ShaderMaterial_x61n0")
+
 [node name="FusedShader" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.85248536)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1)
+visible = false
 mesh = SubResource("QuadMesh_v1uf1")
 surface_material_override/0 = SubResource("ShaderMaterial_xiq0e")

@@ -16,6 +16,12 @@ sky_material = SubResource("ProceduralSkyMaterial_n4psk")
 background_mode = 2
 sky = SubResource("Sky_ej4tk")
 tonemap_mode = 2
+fog_enabled = true
+fog_mode = 1
+fog_density = 0.4
+fog_height = -8.0
+fog_height_density = 0.08
+fog_depth_curve = 3.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ktb3l"]
 size = Vector3(5.0611725, 1.3304443, 1)
