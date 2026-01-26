@@ -33,11 +33,11 @@ func win():
 	player.fuel_generation = 0
 	player.win = true
 	player.velocity = Vector3.ZERO
-	timer.timeout.connect(launch_player)
+	timer.timeout.connect(eruption)
 	level.door_explode.animation_finished.connect(explode_finished)
 	camera_follow.following = null
-	timer.start(5)
-	level.play_exploding_door()
+	timer.start(4)
+	level.door_explode.play("Take 001")
 
 func cheat():
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -48,6 +48,12 @@ func explode_finished(_animation_name):
 	player_stat.visible = false
 	end_game.visible = true
 
+func eruption():
+	level.door_explode.pause()
+	$FrogEruption2.play()
+	$FrogEruption2.finished.connect(launch_player)
+
 func launch_player():
+	level.door_explode.play_section("Take 001", 4.9)
 	$Player.velocity = Vector3.UP * 120
 	$FrogHouseExplodes.play()

@@ -105,6 +105,7 @@ draw_pass_1 = SubResource("SphereMesh_yw30f")
 
 [node name="FrogLandsinWater" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_hg6s5")
+volume_db = -8.0
 
 [node name="FrogStep2" type="AudioStreamPlayer" parent="."]
 

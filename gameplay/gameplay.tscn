@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bpxoa0odfnb52"]
+[gd_scene load_steps=18 format=3 uid="uid://bpxoa0odfnb52"]
 
 [ext_resource type="Script" uid="uid://bir0njdj0yhjh" path="res://gameplay/gameplay.gd" id="1_gvicd"]
 [ext_resource type="PackedScene" uid="uid://b01nsjmmrjijr" path="res://player/player.tscn" id="1_n4psk"]
@@ -11,6 +11,7 @@
 [ext_resource type="Theme" uid="uid://b07vbppvsnjo4" path="res://menu/main_menu.tres" id="9_nimes"]
 [ext_resource type="AudioStream" uid="uid://bp21vya7vnfka" path="res://audio/sfx/FrogDeath.mp3" id="11_2okcp"]
 [ext_resource type="AudioStream" uid="uid://bscwgohhuixnm" path="res://audio/sfx/FrogHouseExplodes.mp3" id="11_vyivm"]
+[ext_resource type="AudioStream" uid="uid://ch42xnibjnn37" path="res://audio/sfx/FrogEruption2.mp3" id="12_vyivm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n4psk"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -20,7 +21,6 @@ ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 sky_material = SubResource("ProceduralSkyMaterial_n4psk")
 
 [sub_resource type="Environment" id="Environment_oe8ih"]
-background_mode = 2
 sky = SubResource("Sky_ej4tk")
 tonemap_mode = 2
 fog_enabled = true
@@ -33,6 +33,9 @@ fog_depth_curve = 3.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_gvicd"]
 size = Vector3(59.800507, 86, 101.86914)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_2okcp"]
+size = Vector3(11.111572, 86, 101.86914)
+
 [node name="Gameplay" type="Node3D"]
 script = ExtResource("1_gvicd")
 
@@ -42,7 +45,7 @@ environment = SubResource("Environment_oe8ih")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.6140648, 0.6835154, -0.3946278, 2.7805946e-08, 0.49999994, 0.86602545, 0.7892556, -0.53179574, 0.30703235, 0, 0, 0)
 light_color = Color(0.43275476, 0.5733627, 0.3623269, 1)
-light_energy = 0.5
+light_energy = 0.36
 shadow_enabled = true
 
 [node name="Player" parent="." node_paths=PackedStringArray("gameplay") instance=ExtResource("1_n4psk")]
@@ -74,7 +77,7 @@ cutscene = NodePath("../CanvasLayer/MiddleCutscene")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CutsceneArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4136047, 39.859375, 0)
-shape = SubResource("BoxShape3D_gvicd")
+shape = SubResource("BoxShape3D_2okcp")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -207,6 +210,9 @@ stream = ExtResource("11_2okcp")
 [node name="FrogHouseExplodes" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("11_vyivm")
+
+[node name="FrogEruption2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_vyivm")
 
 [connection signal="body_entered" from="WinArea" to="WinArea" method="_on_body_entered"]
 [connection signal="body_entered" from="CutsceneArea" to="CutsceneArea" method="_on_body_entered"]
