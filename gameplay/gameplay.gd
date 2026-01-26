@@ -52,8 +52,12 @@ func eruption():
 	level.door_explode.pause()
 	$FrogEruption2.play()
 	$FrogEruption2.finished.connect(launch_player)
+	await  get_tree().create_timer(2.5).timeout
+	camera_follow.shaking = true
 
 func launch_player():
 	level.door_explode.play_section("Take 001", 4.9)
 	$Player.velocity = Vector3.UP * 120
 	$FrogHouseExplodes.play()
+	await $FrogHouseExplodes.finished
+	camera_follow.shaking = false

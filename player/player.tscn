@@ -15,9 +15,16 @@ radius = 0.67221236
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qjkh3"]
 spread = 180.0
-initial_velocity_max = 10.0
+initial_velocity_min = 9.9
+initial_velocity_max = 19.9
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -13.460002
+linear_accel_max = -4.750002
+scale_min = 0.59999996
+scale_max = 1.8
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yw30f"]
+albedo_color = Color(0.32675353, 0.19685525, 0.04935293, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_g6k8r"]
 material = SubResource("StandardMaterial3D_yw30f")
@@ -72,7 +79,9 @@ metadata/_custom_type_script = "uid://bknyxylsjojuo"
 
 [node name="ExplodeVFX" type="GPUParticles3D" parent="."]
 emitting = false
-amount = 35
+amount = 50
+lifetime = 0.5
+one_shot = true
 explosiveness = 0.7
 process_material = SubResource("ParticleProcessMaterial_qjkh3")
 draw_pass_1 = SubResource("SphereMesh_g6k8r")
