@@ -5,7 +5,7 @@ class_name Player
 @onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
 
 @export var max_fuel: float = 100
-@export var fuel_generation: float = 5
+@export var fuel_generation: float = 15
 var current_fuel: float
 
 var _exploded = false

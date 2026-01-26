@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://q8cktic6p6vb"]
+[gd_scene load_steps=4 format=3 uid="uid://q8cktic6p6vb"]
 
 [ext_resource type="Script" uid="uid://bio0gn0bfhp0d" path="res://stats/player_stat.gd" id="1_3hopx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ngvm2"]
+bg_color = Color(0.45008206, 0.3100665, 0.30479744, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28yt5"]
+bg_color = Color(0.37180644, 0.59809446, 0.29908502, 1)
 
 [node name="PlayerStat" type="Control"]
 layout_mode = 3
@@ -17,3 +23,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 27.0
 grow_horizontal = 2
+theme_override_font_sizes/font_size = 66
+theme_override_styles/background = SubResource("StyleBoxFlat_ngvm2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_28yt5")
+value = 60.0
