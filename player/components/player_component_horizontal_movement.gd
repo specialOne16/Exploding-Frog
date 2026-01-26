@@ -5,13 +5,22 @@ class_name PCGroundMovement
 
 @export var ground_movement_speed = 5
 @export var sky_movement_speed = 3
+@export var water_movement_speed = 1
+@onready var walk_swim: AnimationPlayer = $"../walk swim".get_child(1)
+@onready var water_detector_2: Area3D = $"../WaterDetector2"
+@onready var walk_swim_parent: Node3D = $"../walk swim"
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var input = Input.get_axis("left", "right")
+	
+	if input != 0: 
+		walk_swim.play("Take 001")
+		walk_swim_parent.rotation.y = PI/2 if input > 0 else -PI/2
+	else:walk_swim.stop()
 	
 	if player.is_on_floor():
 		player.velocity.x = input * ground_movement_speed
+	elif water_detector_2.get_overlapping_areas().size() > 0:
+		player.velocity.x = input * water_movement_speed
 	else:
 		player.velocity.x = input * sky_movement_speed
-		#var sky_acceleration = 1 if sign(player.velocity.x) == sign(input) else 3
-		#player.velocity.x = move_toward(player.velocity.x, input * sky_movement_speed, delta * sky_acceleration)

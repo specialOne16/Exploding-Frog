@@ -16,7 +16,14 @@ func _process(delta: float) -> void:
 	if current_fuel > max_fuel and not _exploded: _explode()
 
 func _physics_process(_delta: float) -> void:
-	if not _exploded: move_and_slide()
+	if not _exploded: 
+		move_and_slide()
+		if is_on_floor():
+			var normal = get_floor_normal()
+			var vec2_normal = Vector2(normal.x, normal.y)
+			$"walk swim".rotation.z = vec2_normal.angle() - PI / 2
+		else:
+			$"walk swim".rotation.z = 0
 
 func _explode():
 	_exploded = true

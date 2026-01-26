@@ -33,7 +33,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		if player.is_on_floor(): player.velocity.y = 0
 		thrusting_vfx.emitting = false
-	
 
 func thrust(delta: float):
 	player.current_fuel -= fuel_consumption * delta
