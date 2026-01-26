@@ -2,8 +2,10 @@ extends Node
 class_name PCThrusting
 
 @onready var player: Player = $".."
-@onready var thrusting_vfx: GPUParticles3D = $"../ThrustingVFX"
+@onready var thrusting_vfx: GPUParticles3D = $"../walk swim/ThrustingVFX"
 @onready var water_detector: Area3D = $"../WaterDetector"
+@onready var frog_deflate: AudioStreamPlayer = $"../FrogDeflate"
+
 
 @export var force = 10
 @export var gravity = 10
@@ -34,7 +36,12 @@ func _physics_process(delta: float) -> void:
 		if player.velocity.y > 0: thrust(delta)
 	else:
 		if player.is_on_floor(): player.velocity.y = 0
-		thrusting_vfx.emitting = false
+	
+	thrusting_vfx.emitting = Input.is_action_pressed("action")
+	if Input.is_action_pressed("action"):
+		if not frog_deflate.playing: frog_deflate.play()
+	else:
+		frog_deflate.stop()
 
 func thrust(delta: float):
 	player.current_fuel -= fuel_consumption * delta
@@ -44,7 +51,5 @@ func thrust(delta: float):
 	
 	if player.velocity.y <= force:
 		player.velocity.y = force
-		thrusting_vfx.emitting = true
 	else:
 		player.velocity.y += force * delta
-		thrusting_vfx.emitting = false

@@ -7,9 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://q8cktic6p6vb" path="res://stats/player_stat.tscn" id="4_xuee5"]
 [ext_resource type="Script" uid="uid://cbxdfvni3wlfj" path="res://gameplay/win_area.gd" id="5_7pdct"]
 [ext_resource type="Script" uid="uid://di1nje34f51ay" path="res://gameplay/cutscene_area.gd" id="6_r5as3"]
-[ext_resource type="AudioStream" uid="uid://cootxp14b85yr" path="res://audio/music/FrogExplode.mp3" id="7_uk44f"]
 [ext_resource type="Script" uid="uid://cfqbvx4wgcmff" path="res://gameplay/cutscene.gd" id="7_yvprt"]
 [ext_resource type="Theme" uid="uid://b07vbppvsnjo4" path="res://menu/main_menu.tres" id="9_nimes"]
+[ext_resource type="AudioStream" uid="uid://bp21vya7vnfka" path="res://audio/sfx/FrogDeath.mp3" id="11_2okcp"]
+[ext_resource type="AudioStream" uid="uid://bscwgohhuixnm" path="res://audio/sfx/FrogHouseExplodes.mp3" id="11_vyivm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n4psk"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -28,9 +29,6 @@ fog_density = 0.4
 fog_height = -8.0
 fog_height_density = 0.08
 fog_depth_curve = 3.0
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ktb3l"]
-size = Vector3(5.0611725, 1.3304443, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gvicd"]
 size = Vector3(38.158997, 82.13196, 23.140625)
@@ -58,15 +56,6 @@ following = NodePath("../Player")
 
 [node name="Level" parent="." instance=ExtResource("3_oe8ih")]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Level"]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -1.5994657, -0.23542847, 0)
-collision_layer = 16
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.97714585, -0.21256994, 0, 0.21256994, 0.97714585, -1.0602722, -1.7270584, -0.031903654)
-shape = SubResource("BoxShape3D_ktb3l")
 
 [node name="WinArea" type="Area3D" parent="." node_paths=PackedStringArray("gameplay")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 746.55566, 70.21772, 0)
@@ -211,8 +200,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 658.1256, 73.33242, 0)
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
-[node name="FrogExplode" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_uk44f")
+[node name="FrogDeath" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("11_2okcp")
+
+[node name="FrogHouseExplodes" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("11_vyivm")
 
 [connection signal="body_entered" from="WinArea" to="WinArea" method="_on_body_entered"]
 [connection signal="body_entered" from="CutsceneArea" to="CutsceneArea" method="_on_body_entered"]

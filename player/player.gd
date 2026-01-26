@@ -33,3 +33,7 @@ func _explode():
 	mesh_instance_3d.visible = false
 	walk_swim.visible = false
 	gameplay.exploded()
+
+
+func _on_water_detector_2_area_entered(_area: Area3D) -> void:
+	$FrogLandsinWater.play()

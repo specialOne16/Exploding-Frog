@@ -3,11 +3,15 @@ extends Node
 @onready var frog_jam_beginning_drums: AudioStreamPlayer = $FrogJamBeginningDrums
 @onready var frog_jam_extra_loops: AudioStreamPlayer = $FrogJamExtraLoops
 @onready var frog_jam_first_loop: AudioStreamPlayer = $FrogJamFirstLoop
+@onready var frogambience_wip_1: AudioStreamPlayer = $FrogambienceWip1
 
 var game_started = false
 
 func _ready() -> void:
 	frog_jam_beginning_drums.play()
+
+func _process(_delta: float) -> void:
+	if game_started and not frogambience_wip_1.playing: frogambience_wip_1.play()
 
 func _on_frog_jam_beginning_drums_finished() -> void:
 	if game_started: frog_jam_first_loop.play()

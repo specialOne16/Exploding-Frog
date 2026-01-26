@@ -1,29 +1,27 @@
-[gd_scene load_steps=13 format=3 uid="uid://b01nsjmmrjijr"]
+[gd_scene load_steps=21 format=3 uid="uid://b01nsjmmrjijr"]
 
 [ext_resource type="Script" uid="uid://cdcjde3jouur8" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://bxo48am8yhnno" path="res://player/components/player_component_horizontal_movement.gd" id="2_g1dw6"]
 [ext_resource type="Script" uid="uid://bknyxylsjojuo" path="res://player/components/player_component_thrusting.gd" id="3_yw30f"]
 [ext_resource type="PackedScene" uid="uid://bjxt3vpmdgo" path="res://player/assets/walk swim.fbx" id="4_yw30f"]
+[ext_resource type="AudioStream" uid="uid://dsndjmh6dlhmm" path="res://audio/sfx/FrogDeflate.mp3" id="5_rgyib"]
+[ext_resource type="AudioStream" uid="uid://mwlqx011ws88" path="res://audio/sfx/FrogLandsinWater.mp3" id="6_hg6s5"]
+[ext_resource type="AudioStream" uid="uid://bkn0nl2gavqrq" path="res://audio/sfx/FrogStep2.mp3" id="7_8t03j"]
+[ext_resource type="AudioStream" uid="uid://gyvfsjxk131f" path="res://audio/sfx/FrogSwim.mp3" id="8_2ieo8"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_kqu6x"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oul6g"]
 radius = 0.67221236
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g1dw6"]
-direction = Vector3(-1, 0, 0)
-initial_velocity_min = 2.0
-initial_velocity_max = 2.0
-
-[sub_resource type="SphereMesh" id="SphereMesh_yw30f"]
-radius = 0.1
-height = 0.2
-
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qjkh3"]
 spread = 180.0
 initial_velocity_max = 10.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yw30f"]
+
 [sub_resource type="SphereMesh" id="SphereMesh_g6k8r"]
+material = SubResource("StandardMaterial3D_yw30f")
 radius = 0.2
 height = 0.4
 
@@ -32,6 +30,31 @@ size = Vector3(1.7556152, 4, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yw30f"]
 size = Vector3(1.7556152, 5.0161133, 1)
+
+[sub_resource type="Curve" id="Curve_yw30f"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qjkh3"]
+curve = SubResource("Curve_yw30f")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g1dw6"]
+direction = Vector3(-1, 0, 0)
+spread = 21.03
+flatness = 0.5
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, -2, 0)
+scale_min = 0.0
+scale_max = 1.53
+scale_curve = SubResource("CurveTexture_qjkh3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6k8r"]
+transparency = 1
+albedo_color = Color(0.35, 0.22108333, 0.12250001, 0.34901962)
+
+[sub_resource type="SphereMesh" id="SphereMesh_yw30f"]
+material = SubResource("StandardMaterial3D_g6k8r")
 
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 16
@@ -56,14 +79,9 @@ script = ExtResource("3_yw30f")
 force = 12
 metadata/_custom_type_script = "uid://bknyxylsjojuo"
 
-[node name="ThrustingVFX" type="GPUParticles3D" parent="."]
-emitting = false
-process_material = SubResource("ParticleProcessMaterial_g1dw6")
-draw_pass_1 = SubResource("SphereMesh_yw30f")
-
 [node name="ExplodeVFX" type="GPUParticles3D" parent="."]
 emitting = false
-one_shot = true
+amount = 35
 explosiveness = 0.7
 process_material = SubResource("ParticleProcessMaterial_qjkh3")
 draw_pass_1 = SubResource("SphereMesh_g6k8r")
@@ -85,4 +103,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4941711, 0)
 shape = SubResource("BoxShape3D_yw30f")
 
 [node name="walk swim" parent="." instance=ExtResource("4_yw30f")]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, -0.64020485, 0)
+transform = Transform3D(-2.1855694e-06, 0, 50, 0, 50, 0, -50, 0, -2.1855694e-06, 0, -0.64020485, 0)
+
+[node name="ThrustingVFX" type="GPUParticles3D" parent="walk swim"]
+transform = Transform3D(-8.742278e-10, 0, -0.02, 0, 0.02, 0, 0.02, 0, -8.742278e-10, 1.0671443e-09, 0.012804097, -0.024413414)
+emitting = false
+amount = 25
+lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_g1dw6")
+draw_pass_1 = SubResource("SphereMesh_yw30f")
+
+[node name="FrogLandsinWater" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_hg6s5")
+
+[node name="FrogStep2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_8t03j")
+
+[node name="FrogSwim" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_2ieo8")
+
+[node name="FrogDeflate" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_rgyib")
+
+[connection signal="area_entered" from="WaterDetector2" to="." method="_on_water_detector_2_area_entered"]

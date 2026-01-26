@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cptmb7leh0tpq"]
+[gd_scene load_steps=6 format=3 uid="uid://cptmb7leh0tpq"]
 
 [ext_resource type="Script" uid="uid://b8pd0a5pher1v" path="res://audio/audio_player.gd" id="1_jxbt4"]
 [ext_resource type="AudioStream" uid="uid://cguq3y26eivos" path="res://audio/music/FrogJamBeginningDrums.mp3" id="2_tcuug"]
 [ext_resource type="AudioStream" uid="uid://cljj0fpjiduka" path="res://audio/music/FrogJamExtraLoops.mp3" id="3_j1c7k"]
 [ext_resource type="AudioStream" uid="uid://co5707w6e1ito" path="res://audio/music/FrogJamFirstLoop.mp3" id="4_mwt4x"]
+[ext_resource type="AudioStream" uid="uid://d4htgko6yysru" path="res://audio/sfx/FrogambienceWIP1.mp3" id="5_tcuug"]
 
 [node name="AudioPlayer" type="Node"]
 process_mode = 3
@@ -20,6 +21,9 @@ volume_db = -10.0
 [node name="FrogJamFirstLoop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_mwt4x")
 volume_db = -10.0
+
+[node name="FrogambienceWip1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_tcuug")
 
 [connection signal="finished" from="FrogJamBeginningDrums" to="." method="_on_frog_jam_beginning_drums_finished"]
 [connection signal="finished" from="FrogJamExtraLoops" to="." method="_on_frog_jam_extra_loops_finished"]

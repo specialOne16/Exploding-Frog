@@ -8,6 +8,7 @@ class_name Gameplay
 @onready var camera_follow: CameraFollow = $CameraFollow
 @onready var timer: Timer = $Timer
 @onready var player: Player = $Player
+@onready var frog_death: AudioStreamPlayer = $FrogDeath
 
 func _ready() -> void:
 	player_stat.visible = true
@@ -22,6 +23,7 @@ func _on_button_pressed() -> void:
 	get_tree().reload_current_scene()
 
 func exploded():
+	frog_death.play()
 	await get_tree().create_timer(1).timeout
 	get_tree().paused = true
 	player_stat.visible = false
@@ -48,4 +50,4 @@ func explode_finished(_animation_name):
 
 func launch_player():
 	$Player.velocity = Vector3.UP * 120
-	$FrogExplode.play()
+	$FrogHouseExplodes.play()
