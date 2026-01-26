@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bpxoa0odfnb52"]
+[gd_scene load_steps=16 format=3 uid="uid://bpxoa0odfnb52"]
 
 [ext_resource type="Script" uid="uid://bir0njdj0yhjh" path="res://gameplay/gameplay.gd" id="1_gvicd"]
 [ext_resource type="PackedScene" uid="uid://b01nsjmmrjijr" path="res://player/player.tscn" id="1_n4psk"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://di1nje34f51ay" path="res://gameplay/cutscene_area.gd" id="6_r5as3"]
 [ext_resource type="AudioStream" uid="uid://cootxp14b85yr" path="res://audio/music/FrogExplode.mp3" id="7_uk44f"]
 [ext_resource type="Script" uid="uid://cfqbvx4wgcmff" path="res://gameplay/cutscene.gd" id="7_yvprt"]
+[ext_resource type="Theme" uid="uid://b07vbppvsnjo4" path="res://menu/main_menu.tres" id="9_nimes"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n4psk"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -123,10 +124,12 @@ size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="CanvasLayer/EndGame/PanelContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 60
 text = "Thanks for playing!"
 
 [node name="MiddleCutscene" type="Control" parent="CanvasLayer"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -156,6 +159,7 @@ size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="CanvasLayer/MiddleCutscene/PanelContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 41
 text = "Some dialogue"
 
 [node name="Timer2" type="Timer" parent="CanvasLayer/MiddleCutscene"]
@@ -163,7 +167,6 @@ one_shot = true
 
 [node name="Died" type="Control" parent="CanvasLayer"]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -189,13 +192,17 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/separation = 39
 
 [node name="Label" type="Label" parent="CanvasLayer/Died/PanelContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 60
 text = "Exploded!"
 
 [node name="Button" type="Button" parent="CanvasLayer/Died/PanelContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("9_nimes")
 text = "Restart"
 
 [node name="Cheat Point" type="Node3D" parent="."]

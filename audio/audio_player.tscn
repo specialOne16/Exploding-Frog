@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://co5707w6e1ito" path="res://audio/music/FrogJamFirstLoop.mp3" id="4_mwt4x"]
 
 [node name="AudioPlayer" type="Node"]
+process_mode = 3
 script = ExtResource("1_jxbt4")
 
 [node name="FrogJamBeginningDrums" type="AudioStreamPlayer" parent="."]
