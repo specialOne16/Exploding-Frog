@@ -11,6 +11,7 @@ func _ready() -> void:
 	_initial_distance = position - following.position
 
 func _process(_delta: float) -> void:
+	if not following: return
 	var target_position = following.position + _initial_distance
 	
 	if abs(position.x - target_position.x) > x_tolerance:

@@ -4,6 +4,7 @@ class_name Player
 @onready var explode_vfx: GPUParticles3D = $ExplodeVFX
 @onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
 
+@export var gameplay: Gameplay
 @export var max_fuel: float = 100
 @export var fuel_generation: float = 15
 var current_fuel: float
@@ -21,3 +22,5 @@ func _explode():
 	_exploded = true
 	explode_vfx.emitting = true
 	mesh_instance_3d.visible = false
+	
+	gameplay.exploded()

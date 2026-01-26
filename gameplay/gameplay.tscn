@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bpxoa0odfnb52"]
+[gd_scene load_steps=12 format=3 uid="uid://bpxoa0odfnb52"]
 
+[ext_resource type="Script" uid="uid://bir0njdj0yhjh" path="res://gameplay/gameplay.gd" id="1_gvicd"]
 [ext_resource type="PackedScene" uid="uid://b01nsjmmrjijr" path="res://player/player.tscn" id="1_n4psk"]
 [ext_resource type="PackedScene" uid="uid://bcb178bbl6qlo" path="res://camera/camera_follow.tscn" id="2_ej4tk"]
 [ext_resource type="PackedScene" uid="uid://2mnh43yrjpta" path="res://level/level.tscn" id="3_oe8ih"]
 [ext_resource type="PackedScene" uid="uid://q8cktic6p6vb" path="res://stats/player_stat.tscn" id="4_xuee5"]
+[ext_resource type="Script" uid="uid://cbxdfvni3wlfj" path="res://gameplay/win_area.gd" id="5_7pdct"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n4psk"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -26,7 +28,11 @@ fog_depth_curve = 3.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_ktb3l"]
 size = Vector3(5.0611725, 1.3304443, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_gvicd"]
+size = Vector3(38.158997, 82.13196, 23.140625)
+
 [node name="Gameplay" type="Node3D"]
+script = ExtResource("1_gvicd")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_oe8ih")
@@ -37,9 +43,10 @@ light_color = Color(0.43275476, 0.5733627, 0.3623269, 1)
 light_energy = 0.5
 shadow_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("1_n4psk")]
+[node name="Player" parent="." node_paths=PackedStringArray("gameplay") instance=ExtResource("1_n4psk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.97329, -12.703863, 0)
 axis_lock_linear_z = true
+gameplay = NodePath("..")
 
 [node name="CameraFollow" parent="." node_paths=PackedStringArray("following") instance=ExtResource("2_ej4tk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59, 0, 41.584194)
@@ -57,7 +64,96 @@ collision_mask = 0
 transform = Transform3D(1, 0, 0, 0, 0.97714585, -0.21256994, 0, 0.21256994, 0.97714585, -1.0602722, -1.7270584, -0.031903654)
 shape = SubResource("BoxShape3D_ktb3l")
 
+[node name="WinArea" type="Area3D" parent="." node_paths=PackedStringArray("gameplay")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 746.55566, 70.21772, 0)
+script = ExtResource("5_7pdct")
+gameplay = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WinArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.605469, 21.925354, 0)
+shape = SubResource("BoxShape3D_gvicd")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PlayerStat" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("4_xuee5")]
+visible = false
 player = NodePath("../../Player")
+
+[node name="EndGame" type="Control" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/EndGame"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -364.0
+offset_top = -224.0
+offset_right = 364.0
+offset_bottom = 224.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/EndGame/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/EndGame/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Thanks for playing!"
+
+[node name="Died" type="Control" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Died"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -364.0
+offset_top = -224.0
+offset_right = 364.0
+offset_bottom = 224.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Died/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/Died/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Exploded!"
+
+[node name="Button" type="Button" parent="CanvasLayer/Died/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="Cheat Point" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 658.1256, 73.33242, 0)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="WinArea" to="WinArea" method="_on_body_entered"]
+[connection signal="pressed" from="CanvasLayer/Died/PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
