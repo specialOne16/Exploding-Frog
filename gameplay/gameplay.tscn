@@ -31,7 +31,7 @@ fog_height_density = 0.08
 fog_depth_curve = 3.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gvicd"]
-size = Vector3(38.158997, 82.13196, 23.140625)
+size = Vector3(59.800507, 86, 101.86914)
 
 [node name="Gameplay" type="Node3D"]
 script = ExtResource("1_gvicd")
@@ -58,22 +58,22 @@ following = NodePath("../Player")
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
 
 [node name="WinArea" type="Area3D" parent="." node_paths=PackedStringArray("gameplay")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 746.55566, 70.21772, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 745.2615, 64.4961, 0)
 script = ExtResource("5_7pdct")
 gameplay = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WinArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.605469, 21.925354, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.515015, 21.925354, 0)
 shape = SubResource("BoxShape3D_gvicd")
 
 [node name="CutsceneArea" type="Area3D" parent="." node_paths=PackedStringArray("cutscene")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.878296, 12.036743, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.878296, 10.036743, 0)
 script = ExtResource("6_r5as3")
 text = "I need to poop..."
 cutscene = NodePath("../CanvasLayer/MiddleCutscene")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CutsceneArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.605469, 21.925354, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4136047, 39.859375, 0)
 shape = SubResource("BoxShape3D_gvicd")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -195,7 +195,7 @@ theme = ExtResource("9_nimes")
 text = "Restart"
 
 [node name="Cheat Point" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 658.1256, 73.33242, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 677.61176, 81.71147, 0)
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

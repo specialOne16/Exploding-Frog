@@ -23,6 +23,7 @@ func _physics_process(_delta: float) -> void:
 		
 		if player.is_on_floor():
 			if not frog_step_2.playing: frog_step_2.play()
+			pass
 		elif water_detector_2.get_overlapping_areas().size() > 0:
 			if not frog_swim.playing: frog_swim.play()
 	else:
