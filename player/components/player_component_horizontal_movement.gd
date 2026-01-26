@@ -11,6 +11,7 @@ class_name PCGroundMovement
 @onready var walk_swim_parent: Node3D = $"../walk swim"
 
 func _physics_process(_delta: float) -> void:
+	if player.win: return
 	var input = Input.get_axis("left", "right")
 	
 	if input != 0: 

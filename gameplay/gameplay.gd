@@ -22,12 +22,15 @@ func _on_button_pressed() -> void:
 	get_tree().reload_current_scene()
 
 func exploded():
+	await get_tree().create_timer(1).timeout
 	get_tree().paused = true
 	player_stat.visible = false
 	died.visible = true
 
 func win():
 	player.fuel_generation = 0
+	player.win = true
+	player.velocity = Vector3.ZERO
 	timer.timeout.connect(launch_player)
 	level.door_explode.animation_finished.connect(explode_finished)
 	camera_follow.following = null
@@ -45,3 +48,4 @@ func explode_finished(_animation_name):
 
 func launch_player():
 	$Player.velocity = Vector3.UP * 120
+	$FrogExplode.play()

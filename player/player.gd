@@ -3,6 +3,7 @@ class_name Player
 
 @onready var explode_vfx: GPUParticles3D = $ExplodeVFX
 @onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
+@onready var walk_swim: Node3D = $"walk swim"
 
 @export var gameplay: Gameplay
 @export var max_fuel: float = 100
@@ -10,6 +11,7 @@ class_name Player
 var current_fuel: float
 
 var _exploded = false
+var win = false
 
 func _process(delta: float) -> void:
 	current_fuel += fuel_generation * delta
@@ -29,5 +31,5 @@ func _explode():
 	_exploded = true
 	explode_vfx.emitting = true
 	mesh_instance_3d.visible = false
-	
+	walk_swim.visible = false
 	gameplay.exploded()

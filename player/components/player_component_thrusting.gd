@@ -16,6 +16,8 @@ class_name PCThrusting
 var thrusting = false
 
 func _physics_process(delta: float) -> void:
+	if player.win: return
+	
 	if water_detector.get_overlapping_areas().size() > 0:
 		player.velocity.y = water_up_force
 	else:

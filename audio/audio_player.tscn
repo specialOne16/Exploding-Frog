@@ -10,12 +10,15 @@ script = ExtResource("1_jxbt4")
 
 [node name="FrogJamBeginningDrums" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_tcuug")
+volume_db = -10.0
 
 [node name="FrogJamExtraLoops" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_j1c7k")
+volume_db = -10.0
 
 [node name="FrogJamFirstLoop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_mwt4x")
+volume_db = -10.0
 
 [connection signal="finished" from="FrogJamBeginningDrums" to="." method="_on_frog_jam_beginning_drums_finished"]
 [connection signal="finished" from="FrogJamExtraLoops" to="." method="_on_frog_jam_extra_loops_finished"]
