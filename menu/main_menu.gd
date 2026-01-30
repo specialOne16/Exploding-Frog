@@ -1,5 +1,11 @@
 extends Panel
 
+@onready var main: Control = $Main
+@onready var credits: Control = $Credits
+
+func _ready() -> void:
+	main.visible = true
+	credits.visible = false
 
 func _on_play_button_pressed() -> void:
 	AudioPlayer.game_started = true
@@ -10,3 +16,13 @@ func _on_play_button_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_back_from_credit_pressed() -> void:
+	main.visible = true
+	credits.visible = false
+
+
+func _on_credits_pressed() -> void:
+	main.visible = false
+	credits.visible = true

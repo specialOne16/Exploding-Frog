@@ -1,14 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsf3clhrunexd"]
+[gd_scene load_steps=8 format=3 uid="uid://dsf3clhrunexd"]
 
 [ext_resource type="Script" uid="uid://dtwjbk4orvg14" path="res://menu/main_menu.gd" id="1_chmv6"]
-[ext_resource type="Theme" uid="uid://b07vbppvsnjo4" path="res://menu/main_menu.tres" id="2_f5okj"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f5okj"]
-bg_color = Color(0.30588236, 0.6666667, 0.6862745, 1)
-expand_margin_left = 12.0
-expand_margin_top = 12.0
-expand_margin_right = 12.0
-expand_margin_bottom = 12.0
+[ext_resource type="Texture2D" uid="uid://lyi852rbf4mc" path="res://menu/assets/Main_Menu.png" id="2_0tw43"]
+[ext_resource type="Texture2D" uid="uid://b6qtghbgkh2fb" path="res://menu/assets/v2_play.png" id="2_s8mfa"]
+[ext_resource type="Texture2D" uid="uid://bvih1pwef84t2" path="res://menu/assets/v2_credit.png" id="3_0tw43"]
+[ext_resource type="Texture2D" uid="uid://isa1o0eqx3yu" path="res://menu/assets/credits_2.png" id="3_o5w3e"]
+[ext_resource type="Texture2D" uid="uid://cmtyljlvi040p" path="res://menu/assets/v2_quit.png" id="4_youj7"]
+[ext_resource type="Texture2D" uid="uid://kvl6lert2rr4" path="res://menu/assets/v2_back.png" id="6_l5uyn"]
 
 [node name="MainMenu" type="Panel"]
 anchors_preset = 15
@@ -18,55 +16,82 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_chmv6")
 
-[node name="Label" type="Label" parent="."]
+[node name="Main" type="Control" parent="."]
+visible = false
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = -657.0
-offset_top = 60.0
-offset_right = -60.0
-offset_bottom = 175.0
-grow_horizontal = 0
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 84
-theme_override_styles/normal = SubResource("StyleBoxFlat_f5okj")
-text = "Exploding Frog"
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="PanelContainer" type="VBoxContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="Main"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_0tw43")
+expand_mode = 2
+
+[node name="PanelContainer" type="VBoxContainer" parent="Main"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 60.0
-offset_top = -414.0
-offset_right = 253.0
-offset_bottom = -60.0
+offset_left = 37.0
+offset_top = -280.0
+offset_right = 515.0
+offset_bottom = 320.0
 grow_vertical = 0
+scale = Vector2(0.4, 0.4)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 26
 
-[node name="PlayButton" type="Button" parent="PanelContainer"]
+[node name="Play" type="TextureButton" parent="Main/PanelContainer"]
 layout_mode = 2
-theme = ExtResource("2_f5okj")
-text = "Play"
+texture_normal = ExtResource("2_s8mfa")
 
-[node name="Settings" type="Button" parent="PanelContainer"]
+[node name="Credits" type="TextureButton" parent="Main/PanelContainer"]
 layout_mode = 2
-theme = ExtResource("2_f5okj")
-text = "Settings"
+texture_normal = ExtResource("3_0tw43")
 
-[node name="Credits" type="Button" parent="PanelContainer"]
+[node name="Quit" type="TextureButton" parent="Main/PanelContainer"]
 layout_mode = 2
-theme = ExtResource("2_f5okj")
-text = "Credits"
+texture_normal = ExtResource("4_youj7")
 
-[node name="Quit" type="Button" parent="PanelContainer"]
-layout_mode = 2
-theme = ExtResource("2_f5okj")
-text = "Quit"
+[node name="Credits" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[connection signal="pressed" from="PanelContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="PanelContainer/Quit" to="." method="_on_quit_pressed"]
+[node name="TextureRect" type="TextureRect" parent="Credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_o5w3e")
+expand_mode = 3
+
+[node name="BackFromCredit" type="TextureButton" parent="Credits"]
+layout_mode = 0
+offset_left = 20.000002
+offset_top = 14.999999
+offset_right = 486.0
+offset_bottom = 246.0
+scale = Vector2(0.4, 0.4)
+texture_normal = ExtResource("6_l5uyn")
+
+[connection signal="pressed" from="Main/PanelContainer/Play" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Main/PanelContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Main/PanelContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Credits/BackFromCredit" to="." method="_on_back_from_credit_pressed"]

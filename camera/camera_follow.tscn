@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bcb178bbl6qlo"]
 
 [ext_resource type="Script" uid="uid://s3u81eu2oka5" path="res://camera/camera_follow.gd" id="1_5phf5"]
-[ext_resource type="Shader" path="res://camera/pixel_test.gdshader" id="3_x61n0"]
+[ext_resource type="Shader" uid="uid://bt7vx24u8i1bd" path="res://camera/pixel_test.gdshader" id="3_x61n0"]
 [ext_resource type="Shader" uid="uid://c2gvois6expgd" path="res://shaders/pixel_and_fog_shader.gdshader" id="4_x61n0"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_jg67d"]
